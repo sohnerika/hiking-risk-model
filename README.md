@@ -27,7 +27,7 @@ speed (km/h) = 6 × exp(−3.5 × |slope + 0.05|)
  
 Slopes come from the Lands Department's elevation model. The function's parameters are then calibrated against real Hong Kong hiking times.
  
-### 3. Monte Carlo Finish-Before-Dark Probabilities
+### 3. Monte Carlo "Finish Before Dark" Probabilities
  
 Pace varies by hiker, fatigue, and conditions, so it's modeled as a distribution rather than a single number. Thousands of simulated hikes from a given point produce a probability of reaching an exit before sunset (from the Hong Kong Observatory).
  
