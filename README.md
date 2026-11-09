@@ -20,7 +20,7 @@ And when I finally get to buy one myself someday, I'll know it's real.
 
 ## History & Origin
  
-The Birkin is Hermès' flagship handbag. Its story begins with actress and singer Jane Birkin, who was known for carrying a wicker basket instead of a handbag. On a flight from Paris to London, she ended up seated next to Hermès chief executive Jean-Louis Dumas. After her belongings spilled, she told him she couldn't find a leather bag big enough for everything she carried and sketched her ideal design on an airsickness bag. Hermès released the result in 1984 and named it in her honor.
+The Birkin is Hermès' flagship handbag. Its story begins with actress and singer Jane Birkin, who was known for carrying a wicker basket instead of a handbag. On a flight from Paris to London, she ended up seated next to Hermès chief executive Jean-Louis Dumas. After her belongings spilled, she told him she couldn't find a leather bag big enough for everything she carried and sketched her ideal design on an airsickness bag. Hermès later released the result in 1984 and named it in her honor.
  
 The Birkin became a status symbol in the 1990s and has since been carried by everyone from Victoria Beckham and Kate Moss to the Olsen sisters. Jane Birkin herself was also an avid user of her original bag and covered it in stickers for causes like Médecins du Monde and UNICEF. The original was eventually sold at a charity auction in 1994, and in July 2025 it resold at Sotheby's Paris for €8.6 million (about US$10.1 million) with fees, making it the most expensive handbag ever sold at auction.
  
