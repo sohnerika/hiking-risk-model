@@ -7,7 +7,7 @@
   <em>On the Twin Peaks trail, Hong Kong Island.</em>
 </p>
 
-Growing up in Hong Kong, I spent a lot of weekends hiking. One of the most memorable was the Twin Peaks, which I hiked in sophomore year with two friends and a border collie (pictured above). The Twin Peaks are 386m high and known for their 1,000+ steep, grueling concrete steps. The climb took us much longer than we'd planned, and by the time we reached the end, it was completely dark. We made it out fine, but the experience stuck with me because we had no idea how much daylight we had left, or which way out was fastest.
+Growing up in Hong Kong, I spent a lot of weekends hiking. One of the most memorable was the Twin Peaks, which I hiked in sophomore year with two friends and a border collie (pictured above). The Twin Peaks are 386m high and known for their 1,000+ steep, grueling concrete steps. The climb took us much longer than we'd planned, and by the time we reached the end, it was completely dark.
 
 This project aims to answer that question: **from any point on a Hong Kong trail, will you make it out before sunset, and if not, where's the nearest road, bus stop, or MTR station?**
 
