@@ -12,7 +12,7 @@ A risk model for Hong Kong trails that estimates the probability of finishing a 
   <em>On the Twin Peaks trail, Hong Kong Island.</em>
 </p>
 
-Growing up in Hong Kong, I hiked a lot. In sophomore year, my friends and I hiked the Twin Peaks, a 386-metre summit on Hong Kong Island known for its 1,000+ steep concrete steps. Above is a picture I took on the trail that day. By the time we finished, it was completely dark, and for a while we couldn't find our way back to civilization. We made it out fine, but the problem stuck with me because we had no idea how much daylight we had left or which way out was fastest.   
+Growing up in Hong Kong, I spent a lot of weekends on its trails. One of the most memorable was the Twin Peaks, which my friends and I hiked in sophomore year (the photo above is from that day). It's a 386-metre summit on Hong Kong Island, known for its 1,000+ steep concrete steps and a climb took us much longer than we'd planned. By the time we reached the end, it was completely dark, and for a while we couldn't find our way back to civilization. We made it out fine, but the experience stuck with me because we had no idea how much daylight we had left, or which way out was fastest.
 
 ## Approach
  
