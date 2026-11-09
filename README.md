@@ -7,7 +7,7 @@ A risk model for Hong Kong trails that estimates the probability of finishing a 
 ## Why This Project
  
 <p align="center">
-  <img src="twin-peaks.jpg" alt="View from the Twin Peaks trail, Hong Kong Island" width="700" />
+  <img src="twin-peaks.jpg" alt="View from the Twin Peaks trail, Hong Kong Island" width="400" />
   <br />
   <em>On the Twin Peaks trail, Hong Kong Island.</em>
 </p>
