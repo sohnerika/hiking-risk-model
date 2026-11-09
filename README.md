@@ -1,7 +1,8 @@
 # Hiking Risk Model
 
 <p align="center">
-  <img src="twin-peaks.jpg" alt="View from the Twin Peaks trail, Hong Kong Island" width="400" />
+  <img src="twin-peaks.jpg" alt="Twin Peaks trail" width="350" />
+  <img src="static_map.webp" alt="Map of the Twin Peaks route" width="350" />
   <br />
   <em>On the Twin Peaks trail, Hong Kong Island.</em>
 </p>
