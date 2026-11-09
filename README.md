@@ -14,9 +14,7 @@ A computer vision project that authenticates Hermès Birkin bags from close-up p
  
 ## Why This Project
  
-The Birkin is one of the most counterfeited luxury goods in the world, and one of the most valuable. Its resale value is often compared to traditional investments. A widely cited 2016 study by resale platform Baghunter claimed Birkins had outpaced both the S&P 500 and gold over the previous few decades. That analysis came from a company that sells Birkins, so it deserves some skepticism, but the broader point still holds. On the resale market, the bag is often treated as an alternative asset. That makes authentication a form of risk management, since a fake is a total loss.
-
-Commercial authenticators rely on trained experts and proprietary data. This project explores how far a model can get with public images, careful data handling, and honest evaluation.
+The Birkin is one of the most valuable luxury goods in the world, and also one of the most counterfeited. On the resale market, it's often treated as an alternative asset, and some claim it has even outpaced both the S&P 500 and gold over the past few decades. With that much value on the line, authentication becomes a form of risk management, since a fake is a total loss. 
 
 And when I finally get to buy one myself someday, I'll know it's real.
 
@@ -123,8 +121,4 @@ birkin-authentication/
 - [ ] Future work: extending the method to luxury watches (Audemars Piguet Royal Oak)
 ## Disclaimer
  
-This is a research and portfolio project, **not an authentication service.** Its output should never be used as the basis for buying or selling a bag; use a professional authenticator for that. Not affiliated with or endorsed by Hermès. "Hermès" and "Birkin" are trademarks of Hermès International.
- 
-## License
- 
-Code is released under the [MIT License](LICENSE). Images are not included and are not covered by this license.
+This is a research and portfolio project, **not an authentication service.**
