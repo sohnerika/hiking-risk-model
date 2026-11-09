@@ -87,7 +87,7 @@ hk-hiking-risk-model/
 ├── src/
 │   ├── graph.py           # build trail graph from OpenStreetMap + elevation
 │   ├── pace.py            # Tobler function and calibration
-│   ├── simulate.py        # Monte Carlo finish-before-dark probabilities
+│   ├── simulate.py        # Monte Carlo "finish before dark" probabilities
 │   ├── routing.py         # fastest exit and turnaround times
 │   └── evaluate.py        # time accuracy and calibration checks
 ├── app/
