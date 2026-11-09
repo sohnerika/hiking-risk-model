@@ -5,7 +5,7 @@
 A computer vision project that authenticates Hermès Birkin bags from close-up photos of the details expert authenticators inspect: heat stamps, blind stamps, stitching, and hardware.
 
 <p align="center">
-  <img src="images/jane-birkin.jpg" alt="Jane Birkin with her Birkin bag" width="700" />
+  <img src="jane-birkin.jpg" alt="Jane Birkin with her Birkin bag" width="700" />
   <br />
   <em>Jane Birkin with her Birkin. Photo: Shutterstock.</em>
 </p>
