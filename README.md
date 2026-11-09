@@ -1,4 +1,4 @@
-# Birkin Authentication
+# Birkin Authenticator
  
 **Can a model trained only on authentic bags learn to spot counterfeits?**
  
