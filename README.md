@@ -1,7 +1,5 @@
 # Hiking Risk Model
 
-## Why This Project
- 
 <p align="center">
   <img src="twin-peaks.jpg" alt="View from the Twin Peaks trail, Hong Kong Island" width="400" />
   <br />
