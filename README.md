@@ -16,9 +16,11 @@ A computer vision project that authenticates Hermès Birkin bags from close-up p
 
 ## Why This Project
 
-The Birkin is one of the most counterfeited luxury goods in the world, and one of the most valuable. On the resale market it's often treated as an alternative asset that holds or grows in value. That makes authentication a form of risk management, since a fake is a total loss.
+The Birkin is one of the most counterfeited luxury goods in the world, and one of the most valuable. On the resale market it’s often treated as an alternative asset that holds or grows in value. That makes authentication a form of risk management, since a fake is a total loss.
 
 Commercial authenticators rely on trained experts and proprietary data. This project explores how far a model can get with public images, careful data handling, and honest evaluation.
+
+And when I finally get to buy one myself someday, I’ll know it’s real.
 
 ## Approach
 
