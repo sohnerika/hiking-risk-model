@@ -118,7 +118,7 @@ birkin-authentication/
 - [ ] Source-held-out evaluation and heatmaps
 - [ ] Hermès-widened training experiment
 - [ ] Gradio demo on Hugging Face Spaces
-- [ ] Future work: extending the method to luxury watches (Audemars Piguet Royal Oak)
+- [ ] Future work: extending the method to luxury watches with geometric shapes (e.g., Audemars Piguet Royal Oak)
 ## Disclaimer
  
 This is a research and portfolio project, **not an authentication service.**
