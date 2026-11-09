@@ -1,124 +1,112 @@
-# Birkin Authenticator
- 
-**Can a model trained only on authentic bags learn to spot counterfeits?**
- 
-A computer vision project that authenticates Hermès Birkin bags from close-up photos of the details expert authenticators inspect: heat stamps, blind stamps, stitching, and hardware.
- 
-<p align="center">
-  <img src="jane-birkin.jpg" alt="Jane Birkin with her Birkin bag" width="700" />
-  <br />
-  <em>Jane Birkin with her Birkin. Photo: Shutterstock.</em>
-</p>
+# Hiking Risk Model
+
+A risk model for Hong Kong trails that estimates the probability of finishing a hike before sunset from any point on the route, and finds the quickest exit to a road, bus stop, or MTR station.
  
 ---
- 
+
 ## Why This Project
  
-The Birkin is one of the most valuable luxury goods in the world, and also one of the most counterfeited. On the resale market, it's often treated as an alternative asset, and some claim it has even outpaced both the S&P 500 and gold over the past few decades. With that much value on the line, authentication becomes a form of risk management, since a fake is a total loss. 
+<p align="center">
+  <img src="twin-peaks.jpg" alt="View from the Twin Peaks trail, Hong Kong Island" width="700" />
+  <br />
+  <em>On the Twin Peaks trail, Hong Kong Island.</em>
+</p>
 
-And when I finally get to buy one myself someday, I'll know it's real.
+Growing up in Hong Kong, I hiked a lot. In sophomore year, my friends and I hiked the Twin Peaks, a 386-metre summit on Hong Kong Island known for its 1,000+ steep concrete steps. Above is a picture I took on the trail that day. By the time we finished, it was completely dark, and for a while we couldn't find our way back to civilization. We made it out fine, but the problem stuck with me because we had no idea how much daylight we had left or which way out was fastest.   
 
-## History & Origin
- 
-The Birkin is Hermès' flagship handbag. Its story begins with actress and singer Jane Birkin, who was known for carrying a wicker basket instead of a handbag. On a flight from Paris to London, she ended up seated next to Hermès chief executive Jean-Louis Dumas. After her belongings spilled, she told him she couldn't find a leather bag big enough for everything she carried and sketched her ideal design on an airsickness bag. Hermès later released the result in 1984 and named it in her honor.
- 
-The Birkin became a status symbol in the 1990s and has since been carried by everyone from Victoria Beckham and Kate Moss to the Olsen sisters. Jane Birkin herself was also an avid user of her original bag and covered it in stickers for causes like Médecins du Monde and UNICEF. The original was eventually sold at a charity auction in 1994, and in July 2025 it resold at Sotheby's Paris for €8.6 million (about US$10.1 million) with fees, making it the most expensive handbag ever sold at auction.
- 
 ## Approach
  
-### 1. Authenticate Details, Not Whole Bags
+### 1. Trails as a Graph
  
-Full-bag photos invite the model to learn shortcuts (lighting, backgrounds, photo quality) instead of anything about the bag. So every image is cropped to one detail region:
+Trails, roads, bus stops, and MTR stations come from OpenStreetMap. Trail junctions become nodes, trail segments become edges, and every road or transit stop is a possible exit.
  
-| Region | What Authenticators Look For |
-|---|---|
-| Heat stamp | Font, letter spacing, accent on the "È", depth and crispness of the impression |
-| Blind stamp | Date and craftsman code format, consistent with the bag's era |
-| Stitching | Saddle-stitch angle, even tension, clean back-stitches and edge glazing |
-| Hardware | Engraving quality, finish, lock and key details |
+### 2. Realistic Hiking Times
  
-Each region gets its own score, and the app combines them into a per-detail report.
+Hong Kong trails are steep, and a flat-ground pace badly underestimates them. Each segment's walking speed starts from Tobler's hiking function, which slows you down on steep climbs and descents:
  
-### 2. Anomaly Detection Instead of Plain Classification
+```
+speed (km/h) = 6 × exp(−3.5 × |slope + 0.05|)
+```
  
-Confirmed fakes are scarce and hard to label with confidence. Instead of relying on them for training, the main model learns what *authentic* looks like and flags anything that deviates. Confirmed fakes are used only for testing.
+Slopes come from the Lands Department's elevation model. The function's parameters are then calibrated against real Hong Kong hiking times.
  
-### 3. Pretrained Features
+### 3. Monte Carlo Finish-Before-Dark Probabilities
  
-Detail crops are embedded with a pretrained vision model (DINOv2), and lightweight anomaly detectors are fit on top. A supervised real-vs-fake classifier is trained as a baseline for comparison.
+Pace varies by hiker, fatigue, and conditions, so it's modeled as a distribution rather than a single number. Thousands of simulated hikes from a given point produce a probability of reaching an exit before sunset (from the Hong Kong Observatory).
+ 
+### 4. Fastest Way Out and Turnaround Times
+ 
+A shortest-path search (Dijkstra / A*) on travel time finds the quickest exit from any point, which isn't always the trail's official end. Working backward from sunset gives the latest time you can be at each point and still get out in daylight.
  
 ## Data
  
-Images are collected from resale platforms that guarantee authenticity, plus confirmed-fake examples from authentication communities. Every image is logged with:
+| Source | Used For |
+|---|---|
+| OpenStreetMap | Trails, roads, bus stops, MTR stations |
+| Lands Department elevation model | Slopes for each trail segment |
+| Hong Kong Observatory | Sunset times by date |
+| AFCD / official trail guides | Published section distances and walking times, for validation |
+| Trail race results (e.g. MacLehose Trail events) | Checkpoint split times, to fit the pace distribution |
  
-- Source
-- Detail region
-- Label (authentic / fake)
-- Label confidence (high / medium / low)
-- Era (for blind stamp format)
-**Images are not included in this repo.** They belong to their original sources, so only the metadata and collection guidelines are shared. See [`data/README.md`](data/README.md).
+Map data © OpenStreetMap contributors, available under the Open Database License. Race results are used only where the event's terms allow, and raw data that can't be redistributed is not included in this repo. See [`data/README.md`](data/README.md).
  
 ## Evaluation
  
-The goal is an honest test, not an inflated number:
+The goal is to check the model against reality, not just produce a map:
  
-- **Source-held-out testing:** The model is evaluated on images from sources it never saw during training.
-- **Real fakes only:** Test-set fakes are real counterfeits, never synthetic ones.
-- **Metrics:** AUROC, plus how many fakes are caught at a fixed false-alarm rate on authentic bags.
-- **Sanity checks:** Patch-level heatmaps confirm the model focuses on stamp lettering and stitching, not backgrounds.
+- **Time accuracy:** predicted vs. published walking times for each trail section, with error broken down by how steep the section is.
+- **Calibration:** of the hikes the model gives an 80% chance of finishing before dark, do about 80% actually finish? Checked across probability ranges.
+- **Baseline comparison:** calibrated model vs. uncalibrated Tobler vs. a simple flat-pace estimate.
 ## Results
  
 *Coming soon.*
  
-| Region | AUROC | Fakes Caught @ 5% False Alarms |
+| Model | Section Time Error | Calibration Error |
 |---|---|---|
-| Heat stamp | – | – |
-| Blind stamp | – | – |
-| Stitching | – | – |
-| Hardware | – | – |
+| Flat pace (baseline) | – | – |
+| Tobler (uncalibrated) | – | – |
+| Tobler (calibrated to HK data) | – | – |
  
 ### Bonus Experiment
  
-Does training on other Hermès bags help? The heat stamp font and stitching style are shared across many Hermès models. This compares a Birkin-only model against one that also trains on heat stamps from other leather Hermès bags, with both tested on Birkins only.
+Does Tobler's function underestimate Hong Kong's stairs? Many local trails climb on concrete steps rather than dirt slopes. This compares error on stair-heavy sections vs. dirt-trail sections to see whether steps need their own speed adjustment.
  
 ## Limitations
  
-- **Superfakes:** High-end counterfeits can fool experienced authenticators, and they will likely fool this model too.
-- **Label uncertainty:** Some fake labels come from community verdicts rather than professional authentication.
-- **Photo dependence:** Results depend on clear and well lit close-ups.
+- **Race data is fast:** trail race participants are fitter than the average hiker, so the fitted pace distribution likely runs optimistic.
+- **Conditions aren't modeled:** heat, rain, typhoon signals, and slower movement after dark all matter and aren't included.
+- **Map gaps:** OpenStreetMap coverage of small paths and recent trail closures can be incomplete.
+- **One region:** results apply to Hong Kong's terrain and may not carry over elsewhere.
 ## Repo Structure
  
 ```
-birkin-authentication/
+hk-hiking-risk-model/
 ├── data/
-│   ├── README.md          # collection and cropping guidelines
-│   └── metadata.csv       # image sources and labels (no images)
+│   └── README.md          # sources, licenses, and how to download
 ├── notebooks/
 │   ├── 01_explore.ipynb
-│   ├── 02_baseline.ipynb
-│   └── 03_anomaly_detection.ipynb
+│   ├── 02_calibration.ipynb
+│   └── 03_monte_carlo.ipynb
 ├── src/
-│   ├── embed.py           # DINOv2 feature extraction
-│   ├── train.py           # anomaly detectors + baseline classifier
-│   ├── evaluate.py        # source-held-out evaluation
-│   └── heatmaps.py        # patch-level anomaly maps
+│   ├── graph.py           # build trail graph from OpenStreetMap + elevation
+│   ├── pace.py            # Tobler function and calibration
+│   ├── simulate.py        # Monte Carlo finish-before-dark probabilities
+│   ├── routing.py         # fastest exit and turnaround times
+│   └── evaluate.py        # time accuracy and calibration checks
 ├── app/
-│   └── app.py             # Gradio demo
+│   └── map.py             # interactive map of exit times and probabilities
 ├── requirements.txt
 └── README.md
 ```
  
 ## Roadmap
  
-- [ ] Build labeling guide and metadata spreadsheet
-- [ ] Collect and crop authentic detail images
-- [ ] Collect confirmed fakes for the test set
-- [ ] DINOv2 embeddings + supervised baseline
-- [ ] Anomaly detection models
-- [ ] Source-held-out evaluation and heatmaps
-- [ ] Hermès-widened training experiment
-- [ ] Gradio demo on Hugging Face Spaces
-- [ ] Future work: extending the method to luxury watches with geometric shapes (e.g., Audemars Piguet Royal Oak)
-## Disclaimer
- 
-This is a research and portfolio project, **not an authentication service.**
+- [ ] Build the trail graph for one network (MacLehose Trail)
+- [ ] Add elevation and Tobler-based travel times
+- [ ] Fastest-exit routing to roads and transit
+- [ ] Validate against published section times
+- [ ] Fit pace distribution from race splits
+- [ ] Monte Carlo probabilities and calibration check
+- [ ] Interactive map
+- [ ] Stairs vs. dirt-trail experiment
+- [ ] Future work: more trail networks (Lantau, Wilson Trail, Hong Kong Trail)
